@@ -64,7 +64,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
-                        <v:FaceStateView MaxHeight="200" MaxWidth="200" MinHeight="60" MinWidth="40"/>
+                        <v:FaceStateView MaxHeight="140" MaxWidth="200" MinHeight="60" MinWidth="40"/>
                     </WrapPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
