@@ -24,7 +24,8 @@ namespace FaceApp
                 "impression",
                 "wave",
                 "male",
-                "hipster"
+                "hipster",
+                "pan"
             };
 
         public static string[] NonCropFilters =
