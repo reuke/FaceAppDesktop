@@ -22,10 +22,15 @@ namespace FaceApp
                 "female_2",
                 "makeup",
                 "impression",
+                "bangs",
+                "glasses",
                 "wave",
                 "male",
                 "hipster",
-                "pan"
+                "pan",
+                "lion",
+                "hitman",
+                "heisenberg"
             };
 
         public static string[] NonCropFilters =
