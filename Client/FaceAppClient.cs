@@ -9,7 +9,7 @@ namespace FaceApp.Client
 {
     public static class FaceAppClient
     {
-        private static RestClient client = new RestClient("http://dev.faceapp.io/api/v2.5/photos") { UserAgent = "FaceApp/1.0.229 (Linux; Android 4.4)" };
+        private static RestClient client = new RestClient("http://dev.faceapp.io/api/v2.7/photos") { UserAgent = "FaceApp/1.0.229 (Linux; Android 4.4)" };
 
         private static string ClientID = FaceAppClientService.RandomString(8);
         
@@ -36,7 +36,7 @@ namespace FaceApp.Client
                     return null;
                 }
 
-                string code = client.Execute<CodeResponse>(request).Data.Code;
+                string code = client.Execute<UploadResponse>(request).Data.Code;
                 
                 return code;
             });

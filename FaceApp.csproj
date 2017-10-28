@@ -89,7 +89,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Client\CodeResponse.cs" />
+    <Compile Include="Client\UploadResponse.cs" />
     <Compile Include="Client\FaceAppClient.cs" />
     <Compile Include="Client\FaceAppClientService.cs" />
     <Compile Include="Elements\ErrorPopup.xaml.cs">
