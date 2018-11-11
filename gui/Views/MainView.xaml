@@ -1,0 +1,87 @@
+﻿<Window x:Class="FaceApp.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:FaceApp.ViewModels"
+        xmlns:v="clr-namespace:FaceApp.Views"
+        xmlns:el="clr-namespace:FaceApp.Elements"
+        xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=vm:MainViewModel, IsDesignTimeCreatable=True}"
+        cal:Bind.AtDesignTime="True"
+        Title="FaceApp" AllowDrop="True" Icon="logo_icon.ico"
+        Height="600" Width="800"
+        MinHeight="440" MinWidth="440"
+        cal:Message.Attach="[Event Drop] = [Action FileDropped($eventArgs)]">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="165" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="OpenImage" Content="Open" Width="50" />
+            <Button x:Name="SaveImage" Content="Save" Width="50" />
+            <Button Content="Web Camera" Click="WebCamShow_Click" />
+        </StackPanel>
+
+        <v:FaceStateView DataContext="{Binding PreviewState}" MinHeight="60" MinWidth="40" Grid.Row="1" />
+
+        <ListView x:Name="FilterStates" ItemsSource="{Binding MainState.FilterStates}" SelectionMode="Single"
+                  Grid.Column="1" SelectionChanged="FilterStates_SelectionChanged"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  cal:Message.Attach="[Event SelectionChanged] = [Action FaceStateSelectionChanged($eventArgs)];
+                                      [Event MouseDoubleClick] = [Action FaceStateDoubleClick($eventArgs)]"
+                  Grid.RowSpan="2">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <v:FaceStateView MaxHeight="200" MaxWidth="200" MinHeight="60" MinWidth="40" />
+                    </WrapPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListView>
+
+        <ListView x:Name="FaceStatesHistory" SelectionMode="Single" Grid.Row="2" Grid.ColumnSpan="2"
+                  SelectionChanged="FaceStatesHistory_SelectionChanged"
+                  cal:Message.Attach="[Event SelectionChanged] = [Action FaceStateSelectionChanged($eventArgs)];
+                                      [Event MouseDoubleClick] = [Action FaceStateDoubleClick($eventArgs)]">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <v:FaceStateView MaxHeight="140" MaxWidth="200" MinHeight="60" MinWidth="40" />
+                    </WrapPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListView>
+
+        <el:WebCamPopup x:Name="WebCam" Visibility="Hidden" Grid.RowSpan="3" Grid.ColumnSpan="2"
+                        cal:Message.Attach="[Event PictureTaken] = [Action WebCamPictureTaken($eventArgs)]" />
+
+        <Label Content="Drop Image Here" Grid.Row="1" HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center"
+               Visibility="{Binding Path=IsEmpty, Converter={StaticResource BoolToVis}}" />
+        <Label Content="You can drag and drop any image you see to Explorer." Foreground="LightGray" Grid.Column="1"
+               Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+               Visibility="{Binding Path=IsEmpty, Converter={StaticResource BoolToVis}}" />
+
+    </Grid>
+</Window>
