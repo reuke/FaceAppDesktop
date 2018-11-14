@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using Caliburn.Micro;
+using FaceAppApi;
 using Microsoft.Win32;
 using static FaceApp.Elements.WebCamPopup;
 
@@ -80,6 +81,15 @@ namespace FaceApp.ViewModels
             if ((e.Source as ListView)?.SelectedItem is FaceStateViewModel model && model != MainState)
                 if (!model.Loading && !model.Error)
                     MainState = model;
+        }
+
+        public void SwitchApi()
+        {
+            SettingManager.ApiVersion = SettingManager.ApiVersion == 3 ? 2 : 3;
+            MainState = new FaceStateViewModel();
+            AppClient.Client =
+                SettingManager.ApiVersion == 2 ? v2Client : v3Client;
+            NotifyOfPropertyChange(() => ApiSwitchCaption);
         }
     }
 }

@@ -76,6 +76,9 @@
     </Compile>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="AppClient.cs" />
+    <Compile Include="Elements\NotLoadedPopup.xaml.cs">
+      <DependentUpon>NotLoadedPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Elements\ErrorPopup.xaml.cs">
       <DependentUpon>ErrorPopup.xaml</DependentUpon>
     </Compile>
@@ -89,6 +92,7 @@
     <Compile Include="Elements\LoadingSpinner.xaml.cs">
       <DependentUpon>LoadingSpinner.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SettingManager.cs" />
     <Compile Include="ViewModels\FaceStateViewModel.cs" />
     <Compile Include="ViewModels\MainViewModelActions.cs" />
     <Compile Include="ViewModels\MainViewModelProperties.cs" />
@@ -128,6 +132,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Elements\NotLoadedPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Elements\ErrorPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

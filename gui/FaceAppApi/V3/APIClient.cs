@@ -82,11 +82,14 @@ namespace FaceAppApi.V3
             {
                 return null;
             }
+
+            var response = client.Execute<UploadResponse>(request);
+
+            var error = response.Headers.FirstOrDefault(t => t.Name == "X-FaceApp-ErrorCode");
+            if (error != null)
+                OnErrorOccurred($"Error: {error.Value}");
             
-            return client
-                .Execute<UploadResponse>(request)
-                .Data?
-                .Code;
+            return response.Data?.Code;
         }
 
         public BitmapSource GetFiterImage(string code, string filter)
@@ -117,6 +120,9 @@ namespace FaceAppApi.V3
 
             return image;
         }
+
+        public event EventHandler<string> ErrorOccurred;
+        public void OnErrorOccurred(string errorStatus) => ErrorOccurred?.Invoke(this, errorStatus);
 
         private static void AddHeaders(RestRequest request)
         {

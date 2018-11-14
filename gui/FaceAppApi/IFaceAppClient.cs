@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Media.Imaging;
 
 namespace FaceAppApi
@@ -10,5 +11,7 @@ namespace FaceAppApi
         string UploadImage(string filePath);
 
         BitmapSource GetFiterImage(string code, string filter);
+
+        event EventHandler<string> ErrorOccurred;
     }
 }

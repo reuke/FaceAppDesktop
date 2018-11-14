@@ -14,7 +14,6 @@ namespace FaceApp
         public Bootstrapper()
         {
             Initialize();
-            //FaceAppApi.V3.ApiClient Client = new ApiClient();
         }
 
         protected override void Configure()

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Windows.Media.Imaging;
@@ -32,9 +33,13 @@ namespace FaceAppApi.V2
                 return null;
             }
 
-            var code = client.Execute<UploadResponse>(request).Data.Code;
+            var response = client.Execute<UploadResponse>(request);
 
-            return code;
+            var error = response.Headers.FirstOrDefault(t => t.Name == "X-FaceApp-ErrorCode");
+            if (error != null)
+                OnErrorOccurred($"Error: {error.Value}");
+
+            return response.Data?.Code;
         }
 
         public BitmapSource GetFiterImage(string code, string filter)
@@ -62,6 +67,9 @@ namespace FaceAppApi.V2
             image.Freeze();
             return image;
         }
+
+        public event EventHandler<string> ErrorOccurred;
+        public void OnErrorOccurred(string errorStatus) => ErrorOccurred?.Invoke(this, errorStatus);
 
         private static void AddHeaders(RestRequest request)
         {

@@ -36,6 +36,7 @@
 
         <Image Source="{Binding Image}" />
         <el:ErrorPopup Visibility="{Binding Path=Error, Converter={StaticResource BoolToVis}}" Grid.RowSpan="2" />
+        <el:NotLoadedPopup Visibility="{Binding Path=Paused, Converter={StaticResource BoolToVis}}" Grid.RowSpan="2" />
         <el:LoadingSpinner Visibility="{Binding Path=Loading, Converter={StaticResource BoolToVis}}" Grid.RowSpan="2" />
         <Label Content="{Binding Type}" Padding="0,2" HorizontalAlignment="Center" Grid.Row="1" />
 
