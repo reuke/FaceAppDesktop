@@ -9,6 +9,6 @@ namespace FaceAppApi
 
         string UploadImage(string filePath);
 
-        BitmapImage GetFiterImage(string code, string filter);
+        BitmapSource GetFiterImage(string code, string filter);
     }
 }

@@ -54,10 +54,14 @@
     <Compile Include="V2\Helper.cs" />
     <Compile Include="V2\Properties.cs" />
     <Compile Include="V2\UploadResponse.cs" />
+    <Compile Include="V3\APIClient.cs" />
+    <Compile Include="V3\Helper.cs" />
+    <Compile Include="V3\Json\HostsResponse.cs" />
+    <Compile Include="V3\Json\RegistrationRequest.cs" />
+    <Compile Include="V3\Properties.cs" />
+    <Compile Include="V3\Json\UploadResponse.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="V3\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

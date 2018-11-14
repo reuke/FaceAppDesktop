@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using Caliburn.Micro;
 using FaceApp.ViewModels;
+using FaceAppApi.V3;
 
 namespace FaceApp
 {
@@ -13,6 +14,7 @@ namespace FaceApp
         public Bootstrapper()
         {
             Initialize();
+            //FaceAppApi.V3.ApiClient Client = new ApiClient();
         }
 
         protected override void Configure()

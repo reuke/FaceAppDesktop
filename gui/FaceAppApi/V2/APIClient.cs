@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading;
 using System.Windows.Media.Imaging;
-using FaceApp.Client;
 using RestSharp;
 
 namespace FaceAppApi.V2
@@ -38,7 +37,7 @@ namespace FaceAppApi.V2
             return code;
         }
 
-        public BitmapImage GetFiterImage(string code, string filter)
+        public BitmapSource GetFiterImage(string code, string filter)
         {
             if (code == null || !Properties.Filters.Contains(filter))
                 return null;

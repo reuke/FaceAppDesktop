@@ -37,7 +37,7 @@ namespace FaceApp
 
         public static void SaveFile(Bitmap image, string path)
         {
-            if (path == null)
+            if (image == null || path == null)
                 return;
 
             Directory.CreateDirectory(Path.GetDirectoryName(path));
@@ -48,9 +48,9 @@ namespace FaceApp
             }
         }
 
-        public static void SaveFile(BitmapImage image, string path)
+        public static void SaveFile(BitmapSource image, string path)
         {
-            if (path == null)
+            if (image == null || path == null)
                 return;
 
             Directory.CreateDirectory(Path.GetDirectoryName(path));

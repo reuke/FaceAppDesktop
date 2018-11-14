@@ -17,7 +17,7 @@ namespace FaceApp.ViewModels
 
         private string id;
 
-        private BitmapImage image;
+        private BitmapSource image;
 
         private bool loadingIsVisible;
 
@@ -90,7 +90,7 @@ namespace FaceApp.ViewModels
 
         public string FilePath => Helpers.AdaptPath(Path.Combine(FolderPath, FileName + ".jpg"));
 
-        public BitmapImage Image
+        public BitmapSource Image
         {
             get => ParentState != null && image == null ? ParentState?.Image : image;
             set

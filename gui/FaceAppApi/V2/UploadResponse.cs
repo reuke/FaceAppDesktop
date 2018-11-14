@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using RestSharp.Deserializers;
 
-namespace FaceApp.Client
+namespace FaceAppApi.V2
 {
     public class UploadResponse
     {

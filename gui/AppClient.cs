@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 using FaceApp.ViewModels;
-using FaceAppApi.V2;
+using ApiClient = FaceAppApi.V2.ApiClient;
 
 namespace FaceApp
 {
@@ -34,8 +35,11 @@ namespace FaceApp
             var image = await Task.Run(() => Client.GetFiterImage(state.ParentState?.Code, state.Type));
 
             state.Loading = false;
-            state.Image = image;
-            state.Error = image == null;
+            Dispatcher.CurrentDispatcher.Invoke(() =>
+            {
+                state.Image = image;
+                state.Error = image == null;
+            });
         }
     }
 }
